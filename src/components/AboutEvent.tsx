@@ -71,11 +71,11 @@ export default function AboutEvent() {
   ]
 
   return (
-    <section id="sobre" className="py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="sobre" className="py-8 xs:py-12 sm:py-16 lg:py-20 bg-white">
+      <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-700 mb-6">
+        <div className="text-center mb-8 xs:mb-10 sm:mb-12">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-gray-700 mb-3 xs:mb-4">
             Mais do que uma corrida ou caminhada
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -98,8 +98,8 @@ export default function AboutEvent() {
                 key={index}
                 className={`${feature.bgColor} ${feature.borderColor} border rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300 hover:shadow-lg`}>
                 <div
-                  className={`inline-flex items-center justify-center w-16 h-16 ${feature.color} mb-6`}>
-                  <IconComponent className="w-8 h-8" />
+                  className={`w-12 h-12 xs:w-14 xs:h-14 bg-chart-1 rounded-full flex items-center justify-center mx-auto mb-3 xs:mb-4 ${feature.color}`}>
+                  <IconComponent className="w-6 h-6 xs:w-7 xs:h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-700 mb-4">
                   {feature.title}

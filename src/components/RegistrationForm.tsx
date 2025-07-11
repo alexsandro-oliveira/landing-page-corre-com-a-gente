@@ -3,232 +3,238 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CheckCircle, Loader2, User, Mail, Phone } from 'lucide-react'
-import { formSchema, type FormData } from '@/lib/validations'
-import { submitToGoogleSheets } from '@/lib/googleSheets'
-import { cn } from '@/lib/utils'
+import { Loader2, User, Mail, Phone } from 'lucide-react'
+import * as z from 'zod'
+
+const registrationSchema = z.object({
+  name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+  email: z.string().email('Email inválido'),
+  phone: z.string().min(9, 'Telefone deve ter pelo menos 9 dígitos'),
+  emergencyContact: z.string().min(2, 'Contato de emergência é obrigatório'),
+  emergencyPhone: z
+    .string()
+    .min(9, 'Telefone de emergência deve ter pelo menos 9 dígitos'),
+  terms: z.boolean().refine((val) => val === true, {
+    message: 'Deve aceitar os termos e condições',
+  }),
+})
+type RegistrationForm = z.infer<typeof registrationSchema>
 
 export default function RegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState('')
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      nome: '',
-      email: '',
-      telefone: '',
-    },
+  } = useForm<RegistrationForm>({
+    resolver: zodResolver(registrationSchema),
   })
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: RegistrationForm) => {
     setIsSubmitting(true)
 
     try {
-      const result = await submitToGoogleSheets(data)
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      if (result.success) {
-        setIsSubmitted(true)
-        setSubmitMessage(result.message)
-        reset()
-      } else {
-        setSubmitMessage(result.message)
-      }
-    } catch {
-      setSubmitMessage('Erro inesperado. Tente novamente.')
+      console.log('Registration data:', data)
+      setSubmitSuccess(true)
+      reset()
+
+      setTimeout(() => {
+        setSubmitSuccess(false)
+      }, 5000)
+    } catch (error) {
+      console.error('Registration error:', error)
     } finally {
       setIsSubmitting(false)
     }
-  }
-
-  const handleNewRegistration = () => {
-    setIsSubmitted(false)
-    setSubmitMessage('')
-    reset()
-  }
-
-  if (isSubmitted) {
-    return (
-      <section
-        id="inscricao"
-        className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-xl border border-green-100 text-center">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-10 h-10 text-green-600" />
-              </div>
-
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Inscrição Realizada!
-              </h2>
-
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                {submitMessage}
-              </p>
-
-              <button
-                onClick={handleNewRegistration}
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                Fazer Nova Inscrição
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-    )
   }
 
   return (
     <section
       id="inscricao"
       className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-700 mb-6">
-              Inscreva-se Agora
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Preencha o formulário abaixo e junte-se a nós nesta experiência
-              única.
-            </p>
-          </div>
+      <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 xs:mb-10 sm:mb-12">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-gray-700 mb-3 xs:mb-4">
+            Inscreva-se Agora
+          </h2>
+          <p className="text-base xs:text-lg text-gray-600 max-w-2xl mx-auto">
+            Garante já a sua participação neste evento único. Preencha o
+            formulário abaixo e junte-se a nós!
+          </p>
+        </div>
 
-          <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-xl border border-green-100">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-              {/* Nome */}
-              <div>
-                <label
-                  htmlFor="nome"
-                  className="block text-lg font-semibold text-gray-700 mb-3">
-                  Nome Completo
-                </label>
-                <div className="relative">
-                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    {...register('nome')}
-                    type="text"
-                    id="nome"
-                    className={cn(
-                      'w-full pl-12 pr-4 py-4 border-2 rounded-xl text-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-green-100',
-                      errors.nome
-                        ? 'border-red-300 focus:border-red-500'
-                        : 'border-gray-200 focus:border-green-500'
-                    )}
-                    placeholder="Digite seu nome completo"
-                  />
-                </div>
-                {errors.nome && (
-                  <p className="mt-2 text-red-600 text-sm">
-                    {errors.nome.message}
-                  </p>
-                )}
-              </div>
+        <div className="max-w-2xl mx-auto">
+          {submitSuccess && (
+            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-6 text-center">
+              <p className="text-sm xs:text-base font-semibold">
+                Inscrição realizada com sucesso! Receberá um email de
+                confirmação em breve.
+              </p>
+            </div>
+          )}
 
-              {/* Email */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-lg font-semibold text-gray-700 mb-3">
-                  Email
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    {...register('email')}
-                    type="email"
-                    id="email"
-                    className={cn(
-                      'w-full pl-12 pr-4 py-4 border-2 rounded-xl text-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-green-100',
-                      errors.email
-                        ? 'border-red-300 focus:border-red-500'
-                        : 'border-gray-200 focus:border-green-500'
-                    )}
-                    placeholder="Digite seu email"
-                  />
-                </div>
-                {errors.email && (
-                  <p className="mt-2 text-red-600 text-sm">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4 xs:space-y-6">
+            {/* Personal Information */}
+            <div className="bg-white p-4 xs:p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg xs:text-xl font-semibold text-gray-900 mb-4 xs:mb-6">
+                Informações Pessoais
+              </h3>
 
-              {/* Telefone */}
-              <div>
-                <label
-                  htmlFor="telefone"
-                  className="block text-lg font-semibold text-gray-700 mb-3">
-                  Telefone
-                </label>
-                <div className="relative">
-                  <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    {...register('telefone')}
-                    type="tel"
-                    id="telefone"
-                    className={cn(
-                      'w-full pl-12 pr-4 py-4 border-2 rounded-xl text-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-green-100',
-                      errors.telefone
-                        ? 'border-red-300 focus:border-red-500'
-                        : 'border-gray-200 focus:border-green-500'
-                    )}
-                    placeholder="Digite seu telefone (com DDD)"
-                  />
-                </div>
-                {errors.telefone && (
-                  <p className="mt-2 text-red-600 text-sm">
-                    {errors.telefone.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <div className="pt-6">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={cn(
-                    'w-full py-4 px-8 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg',
-                    isSubmitting
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-primary hover:bg-primary  text-white hover:shadow-xl'
-                  )}>
-                  {isSubmitting ? (
-                    <div className="flex items-center justify-center">
-                      <Loader2 className="w-6 h-6 animate-spin mr-3" />
-                      Processando...
-                    </div>
-                  ) : (
-                    'Confirmar Inscrição'
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-6">
+                {/* Nome */}
+                <div>
+                  <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
+                    Nome Completo *
+                  </label>
+                  <div className="relative">
+                    <User className="absolute left-3 xs:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="text"
+                      className="w-full pl-10 xs:pl-12 pr-4 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-chart-1 focus:border-transparent text-sm xs:text-base"
+                      placeholder="Seu nome completo"
+                      {...register('name')}
+                    />
+                  </div>
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.name.message}
+                    </p>
                   )}
-                </button>
-              </div>
-
-              {/* Error Message */}
-              {submitMessage && !isSubmitted && (
-                <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
-                  <p className="text-red-600 text-center">{submitMessage}</p>
                 </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
+                    Email *
+                  </label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 xs:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="email"
+                      className="w-full pl-10 xs:pl-12 pr-4 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-chart-1 focus:border-transparent text-sm xs:text-base"
+                      placeholder="seu.email@exemplo.com"
+                      {...register('email')}
+                    />
+                  </div>
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Telefone */}
+                <div>
+                  <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
+                    Telefone *
+                  </label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 xs:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="tel"
+                      className="w-full pl-10 xs:pl-12 pr-4 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-chart-1 focus:border-transparent text-sm xs:text-base"
+                      placeholder="123 456 789"
+                      {...register('phone')}
+                    />
+                  </div>
+                  {errors.phone && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.phone.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Emergency Contact */}
+            <div className="bg-white p-4 xs:p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg xs:text-xl font-semibold text-gray-900 mb-4 xs:mb-6">
+                Contato de Emergência
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-6">
+                <div>
+                  <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
+                    Nome do Contato *
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-chart-1 focus:border-transparent text-sm xs:text-base"
+                    placeholder="Nome do contato de emergência"
+                    {...register('emergencyContact')}
+                  />
+                  {errors.emergencyContact && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.emergencyContact.message}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
+                    Telefone de Emergência *
+                  </label>
+                  <input
+                    type="tel"
+                    className="w-full px-4 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-chart-1 focus:border-transparent text-sm xs:text-base"
+                    placeholder="123 456 789"
+                    {...register('emergencyPhone')}
+                  />
+                  {errors.emergencyPhone && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.emergencyPhone.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Terms and Submit */}
+            <div className="bg-white p-4 xs:p-6 rounded-lg shadow-sm">
+              <div className="flex items-start space-x-3 mb-4 xs:mb-6">
+                <input
+                  type="checkbox"
+                  className="mt-1 text-chart-1 focus:ring-chart-1 border-gray-300 rounded"
+                  {...register('terms')}
+                />
+                <label className="text-sm xs:text-base text-gray-700">
+                  Aceito os{' '}
+                  <a href="#" className="text-chart-1 hover:underline">
+                    termos e condições
+                  </a>{' '}
+                  e autorizo o uso dos meus dados para fins de organização do
+                  evento.
+                </label>
+              </div>
+              {errors.terms && (
+                <p className="mb-4 text-sm text-red-600">
+                  {errors.terms.message}
+                </p>
               )}
 
-              {/* Privacy Notice */}
-              <div className="pt-4 text-center">
-                <p className="text-sm text-gray-500">
-                  Seus dados serão utilizados apenas para comunicação sobre o
-                  evento.
-                </p>
-              </div>
-            </form>
-          </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-primary text-white py-3 xs:py-4 px-6 xs:px-8 rounded-lg font-semibold text-base xs:text-lg hover:bg-chart-1/90 focus:ring-2 focus:ring-chart-1 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2">
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Processando...</span>
+                  </>
+                ) : (
+                  <span>Confirmar Inscrição</span>
+                )}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>

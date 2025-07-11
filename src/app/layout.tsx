@@ -34,8 +34,8 @@ export default function RootLayout({
   return (
     <html lang="pt-PT" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
-        <div className="flex h-full w-full overflow-hidden">
-          <div className="flex-1">{children}</div>
+        <div className="flex min-h-screen w-full">
+          <div className="flex-1 w-full overflow-x-hidden">{children}</div>
         </div>
       </body>
     </html>

@@ -121,3 +121,80 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Responsividade para telas muito pequenas (320px e menores) */
+@media (max-width: 320px) {
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .responsive-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .responsive-text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  
+  .responsive-text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .responsive-text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .responsive-text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  .responsive-grid-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  .responsive-gap-2 {
+    gap: 0.5rem;
+  }
+  
+  .responsive-gap-3 {
+    gap: 0.75rem;
+  }
+  
+  .responsive-gap-4 {
+    gap: 1rem;
+  }
+  
+  /* Ajustes específicos para elementos que possam quebrar em telas muito pequenas */
+  .max-w-xs {
+    max-width: 18rem;
+  }
+  
+  .text-wrap {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Garantir que textos não quebrem o layout */
+.text-responsive {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Melhorar a experiência de toque em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .hover\:scale-105:hover {
+    transform: scale(1.02);
+  }
+  
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
