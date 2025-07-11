@@ -2,7 +2,6 @@
 
 import { Calendar, MapPin, Users, Clock } from 'lucide-react'
 import SlideArrowButton from './animata/button/slide-arrow-button'
-import TiltCard from './animata/card/tilted-card'
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -20,12 +19,6 @@ export default function HeroSection() {
 
       <div className="relative z-10 container mx-auto px-2 xs:px-4 sm:px-6 sm:pt-14 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
-          {/* Badge */}
-          <TiltCard
-            title="EVENTO ESPECIAL"
-            className="inline-flex mb-4 xs:mb-6 sm:mb-8 text-chart-1 border-chart-1 font-semibold text-xs xs:text-sm"
-          />
-
           {/* Main Title */}
           <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-primary mb-3 xs:mb-4 sm:mb-6 leading-tight">
             Corre com a Gente!
