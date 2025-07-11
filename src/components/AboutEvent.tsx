@@ -71,7 +71,9 @@ export default function AboutEvent() {
   ]
 
   return (
-    <section id="sobre" className="py-8 xs:py-12 sm:py-16 lg:py-20 bg-white">
+    <section
+      id="sobre"
+      className="py-8 xs:py-12 sm:py-16 lg:py-20 px-3 bg-white">
       <div className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 xs:mb-10 sm:mb-12">
@@ -125,7 +127,7 @@ export default function AboutEvent() {
             </p>
           </div>
 
-          <div className="flex gap-8 w-[500px] mx-auto">
+          <div className="flex gap-8 mx-auto">
             {distances.map((option, index) => {
               const IconComponent = option.icon
               return (

@@ -14,28 +14,28 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-14 xs:pt-16">
+      className="relative min-h-screen flex flex-col items-center px-3 justify-center overflow-hidden pt-14 xs:pt-16">
       {/* Background Gradient */}
 
       <div className="relative z-10 container mx-auto px-2 xs:px-4 sm:px-6 sm:pt-14 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Main Title */}
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-primary mb-3 xs:mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-primary mb-3 xs:mb-4 sm:mb-6 leading-tight">
             Corre com a Gente!
-            <span className="text-sm xs:text-base sm:text-2xl md:text-3xl lg:text-4xl block text-gray-600 bg-clip-text mt-1 xs:mt-2">
+            <span className="text-base xs:text-base sm:text-2xl md:text-3xl lg:text-4xl block text-gray-600 bg-clip-text mt-1 xs:mt-2">
               Uma manhã de bem-estar e comunidade
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-600 mb-2 xs:mb-3 sm:mb-4 max-w-2xl mx-auto">
+          <p className="text-base xs:text-base sm:text-lg md:text-xl text-gray-600 mb-4 xs:mb-4 sm:mb-4 max-w-2xl mx-auto">
             Com{' '}
             <span className="font-semibold text-primary">Thalita Santos</span> e{' '}
             <span className="font-semibold text-primary">Lorena Goulart</span>
           </p>
 
           {/* Description */}
-          <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gray-600 mb-6 xs:mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base xs:text-base sm:text-base md:text-lg text-gray-600 mb-6 xs:mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
             Junte-se a nós em uma manhã especial de exercício, bem-estar e
             comunidade. Venha correr ou caminhar com a gente neste evento cheio
             de energia, diversão e um ambiente acolhedor e motivador.
