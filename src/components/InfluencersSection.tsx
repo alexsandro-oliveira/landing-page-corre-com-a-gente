@@ -1,7 +1,6 @@
 'use client'
 
 import { Instagram, ExternalLink, Heart, Dumbbell, Zap } from 'lucide-react'
-import FlipCard from './animata/card/flip-card'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -84,39 +83,27 @@ export default function InfluencersSection() {
               key={index}
               className={`bg-gradient-to-br ${influencer.bgGradient} ${influencer.borderColor} border-2 rounded-2xl xs:rounded-3xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-xl`}>
               {/* Avatar and Basic Info */}
-              <div className="flex items-center justify-center mb-4 xs:mb-6">
-                {/* <div
-                  className={`w-20 h-20 bg-gradient-to-br ${
-                    influencer.buttonGradient.split(' ')[0]
-                  } ${
-                    influencer.buttonGradient.split(' ')[1]
-                  } rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6`}>
-                  {influencer.avatar}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">
+              <div className="flex items-center gap-1 xs:gap-1 mb-4 xs:mb-6 max-sm:flex-col sm:items-center">
+                <Image
+                  src={influencer.avatar}
+                  alt={`${influencer.name} avatar`}
+                  width={300}
+                  height={300}
+                  className="rounded-xl border-4 border-white shadow-lg"
+                />
+                <div className="flex flex-col justify-center items-center ml-4">
+                  <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-gray-800">
                     {influencer.name}
                   </h3>
-                  <p
-                    className={`text-lg font-semibold ${influencer.textColor} mb-2`}>
+                  <p className="text-sm xs:text-base text-gray-600">
                     {influencer.handle}
                   </p>
-                </div> */}
-
-                <FlipCard
-                  description={influencer.description}
-                  image={influencer.avatar}
-                  rotate="y"
-                  subtitle={influencer.handle}
-                  title={influencer.name}
-                  className="mb-6 h-72 lg:h-80"
-                />
+                  {/* Description */}
+                  <p className="text-gray-600 mt-2 ml-4">
+                    {influencer.description}
+                  </p>
+                </div>
               </div>
-
-              {/* Description */}
-              {/* <p className="text-gray-600 text-lg leading-relaxed mb-6 mt-6">
-                {influencer.description}
-              </p> */}
 
               {/* Specialties */}
               <div className="flex flex-wrap gap-2 xs:gap-3 mb-4 xs:mb-6 sm:mb-8 justify-center">
