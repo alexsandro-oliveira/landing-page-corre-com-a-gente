@@ -143,7 +143,7 @@ export default function InfluencersSection() {
 
         {/* Personal Section */}
         <div className="mt-10 xs:mt-12 sm:mt-16 lg:mt-20 text-center">
-          <div className="bg-blue-100 rounded-2xl xs:rounded-3xl p-4 xs:p-6 sm:p-8 lg:p-12 shadow-lg border border-gray-100 max-w-md xs:max-w-lg sm:max-w-xl lg:max-w-2xl mx-auto">
+          <div className="bg-blue-100 rounded-2xl xs:rounded-3xl p-4 xs:p-6 sm:p-8 lg:p-12 shadow-lg border border-gray-100 max-w-md xs:max-w-lg sm:max-w-xl lg:max-w-2xl mx-auto hover:scale-105 transition-all duration-300 hover:shadow-xl">
             <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-gray-700 mb-2 xs:mb-3 sm:mb-4">
               Suporte da Personal Trainer
             </h3>
@@ -189,7 +189,7 @@ export default function InfluencersSection() {
 
         {/* Sponsor Section */}
         <div className="mt-10 xs:mt-12 sm:mt-16 lg:mt-20 text-center">
-          <div className="bg-[#cfe0bc] rounded-2xl xs:rounded-3xl p-4 xs:p-6 sm:p-8 lg:p-12 shadow-lg border border-gray-100 max-w-2xl mx-auto">
+          <div className="bg-[#cfe0bc] rounded-2xl xs:rounded-3xl p-4 xs:p-6 sm:p-8 lg:p-12 shadow-lg border border-gray-100 max-w-2xl mx-auto hover:scale-105 transition-all duration-300 hover:shadow-xl">
             <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-gray-700 mb-2 xs:mb-3 sm:mb-4">
               Patrocinador Especial
             </h3>
