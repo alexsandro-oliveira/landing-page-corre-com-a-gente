@@ -5,11 +5,17 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Corre com a gente! - Evento Esportivo',
+  title: 'Corre com a Gente - Evento Esportivo em Matosinhos',
   description:
-    'Junte-se a nós em uma manhã especial de exercício, bem-estar e comunidade com @thanaeuropa_ e @lolygoulart. Venha correr ou caminhar com a gente neste evento cheio de energia, diversão e um ambiente acolhedor e motivador.',
-  keywords:
-    'corrida, caminhada, portugal, fitness, evento esportivo, uaifit, thanaeuropa, lolygoulart',
+    'Evento esportivo de 5km criado pelas influencers Thalita Santos e Lorena Goulart. Domingo, 27 de Julho de 2025, em Matosinhos, Portugal.',
+  keywords: [
+    'corrida',
+    'caminhada',
+    '5km',
+    'Matosinhos',
+    'Portugal',
+    'evento esportivo',
+  ],
   authors: [{ name: '@alesx.sant' }],
   openGraph: {
     title: 'Evento Corre com a gente!',
@@ -32,12 +38,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-PT" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>
-        <div className="flex min-h-screen w-full">
-          <div className="flex-1 w-full overflow-x-hidden">{children}</div>
-        </div>
-      </body>
+    <html lang="pt-BR">
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }

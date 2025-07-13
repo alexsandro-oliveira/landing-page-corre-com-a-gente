@@ -1,21 +1,28 @@
-import AboutEvent from '@/components/AboutEvent'
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
+'use client'
+
+import Header from '@/components/common/header'
+import ScrollToTop from '@/components/common/scroll-to-top'
 import HeroSection from '@/components/HeroSection'
-import InfluencersSection from '@/components/InfluencersSection'
-import RegistrationForm from '@/components/RegistrationForm'
+import AboutSection from '@/components/AboutSection'
+import OrganizersSections from '@/components/OrganizersSections'
+import SponsorsSections from '@/components/SponsorsSections'
+import RegistrationSection from '@/components/RegistrationSection'
+import FooterSection from '@/components/FooterSection'
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen">
       <Header />
-      <main className="bg-primary-foreground">
+      <ScrollToTop />
+      <main className="bg-white">
         <HeroSection />
-        <AboutEvent />
-        <InfluencersSection />
-        <RegistrationForm />
+        <AboutSection />
+        <OrganizersSections />
+        <SponsorsSections />
+        <RegistrationSection />
       </main>
-      <Footer />
+
+      <FooterSection />
     </div>
   )
 }
