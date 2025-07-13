@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { AlertCircle } from 'lucide-react'
+import { AlertCircle, Loader2Icon } from 'lucide-react'
 
 const registrationSchema = z.object({
   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
@@ -76,8 +76,7 @@ export default function RegistrationForm() {
           Inscrição Realizada com Sucesso!
         </h3>
         <p className="text-sm md:text-base text-blue-700 mb-4">
-          Obrigado por se inscrever no evento Corre com a Gente. Em breve você
-          receberá mais informações por email.
+          Obrigado por se inscrever no evento Corre com a Gente.
         </p>
         <Button
           onClick={() => setIsSubmitted(false)}
@@ -215,7 +214,11 @@ export default function RegistrationForm() {
           type="submit"
           className="w-full bg-[#B8014A] hover:bg-[#99003a] text-white py-2 sm:py-3 text-sm sm:text-base"
           disabled={isSubmitting}>
-          {isSubmitting ? 'Processando...' : 'Inscrever-se'}
+          {isSubmitting ? (
+            <Loader2Icon className="animate-spin" />
+          ) : (
+            'Inscrever-se'
+          )}
         </Button>
       </form>
     </div>
