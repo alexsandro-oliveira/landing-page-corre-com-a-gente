@@ -61,8 +61,6 @@
 
 ### 🎨 Componentes Animados
 
-- **TiltCard**: Cards com efeito de inclinação
-- **FlipCard**: Cards com efeito de rotação
 - **SlideArrowButton**: Botões com animação de seta
 - **Responsive Design**: Adaptação automática para diferentes telas
 
@@ -74,23 +72,19 @@
 - **[React 19](https://react.dev/)** - Biblioteca para construção de interfaces
 - **[TypeScript](https://www.typescriptlang.org/)** - Superset do JavaScript com tipagem estática
 - **[Tailwind CSS 4](https://tailwindcss.com/)** - Framework CSS utilitário
-- **[Framer Motion](https://www.framer.com/motion/)** - Biblioteca de animações
 
 ### Formulários e Validação
 
 - **[React Hook Form](https://react-hook-form.com/)** - Biblioteca para gerenciamento de formulários
 - **[Zod](https://zod.dev/)** - Schema validation
-- **[@hookform/resolvers](https://github.com/react-hook-form/resolvers)** - Resolvers para validação
 
 ### UI Components
 
 - **[Lucide React](https://lucide.dev/)** - Ícones SVG
-- **[Radix UI](https://www.radix-ui.com/)** - Componentes primitivos acessíveis
 - **[shadcn/ui](https://ui.shadcn.com/)** - Componentes de interface reutilizáveis
 
 ### Integração e APIs
 
-- **[Google APIs](https://github.com/googleapis/google-api-nodejs-client)** - Cliente para Google Sheets API
 - **[Google Sheets API](https://developers.google.com/sheets/api)** - Integração com planilhas
 
 ## 📋 Pré-requisitos
