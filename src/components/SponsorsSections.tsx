@@ -9,6 +9,8 @@ export default function SponsorsSections() {
       <div className="container mx-auto px-4">
         <AnimatedSection
           animation="fadeUp"
+          delay={200}
+          duration={600}
           className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Apoiadores
@@ -23,6 +25,7 @@ export default function SponsorsSections() {
           <AnimatedSection
             animation="scaleUp"
             delay={200}
+            duration={600}
             className="text-center ">
             <h3 className="text-lg md:text-xl font-bold mb-4 text-gray-800">
               Patrocinador Principal

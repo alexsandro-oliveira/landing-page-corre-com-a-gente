@@ -98,7 +98,7 @@ export default function AboutSection() {
 
         <AnimatedSection
           animation="fadeUp"
-          delay={1000}
+          delay={800}
           className="text-center mt-8 md:mt-12">
           {/* Distance Options */}
           <div className="max-w-4xl mx-auto">
@@ -113,7 +113,7 @@ export default function AboutSection() {
                   return (
                     <AnimatedSection
                       animation="fadeUp"
-                      delay={1200}
+                      delay={900}
                       key={index}
                       className={`${option.bgColor} ${option.borderColor} border-2 rounded-3xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-xl`}>
                       <div className="flex items-start mb-6">
@@ -157,7 +157,7 @@ export default function AboutSection() {
 
               <AnimatedSection
                 animation="fadeUp"
-                delay={1300}
+                delay={1100}
                 className="mt-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 lg:p-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                   <div className="lg:col-span-2">

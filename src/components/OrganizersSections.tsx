@@ -76,7 +76,8 @@ export default function OrganizersSections() {
           {influencers.map((influencer, index) => (
             <AnimatedSection
               animation="slideLeft"
-              delay={200}
+              delay={600}
+              duration={600}
               key={index}
               className={`bg-gradient-to-br ${influencer.bgGradient} ${influencer.borderColor} border-2 rounded-2xl xs:rounded-3xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-xl`}>
               <div className="flex items-center gap-1 xs:gap-1 mb-4 xs:mb-6 max-sm:flex-col sm:items-center">
