@@ -242,15 +242,64 @@ evento-tha-e-loly/
 | **start** | `npm run start` | Inicia servidor de produção        |
 | **lint**  | `npm run lint`  | Executa verificação de código      |
 
-## 🔗 Integração com Google Sheets
+### 🔗 Integração com Google Sheets
 
-### Fluxo de Dados
+A aplicação oferece integração completa com Google Sheets para coleta e consulta de dados:
+
+#### Endpoints Disponíveis
+
+- **POST `/api/submit`**: Adiciona nova inscrição
+- **GET `/api/submit`**: Consulta inscrições existentes com paginação
+
+#### Fluxo de Dados
 
 1. **Usuário preenche formulário** → Validação client-side com Zod
 2. **Dados validados** → Enviados via POST para `/api/submit`
 3. **API processa** → Autentica com Google Sheets API
 4. **Dados salvos** → Adicionados à planilha automaticamente
 5. **Feedback** → Usuário recebe confirmação de sucesso
+
+#### Consulta de Dados (GET)
+
+```javascript
+// Buscar primeiras 50 inscrições
+const response = await fetch('/api/submit')
+
+// Buscar com paginação
+const response = await fetch('/api/submit?limit=20&offset=40')
+
+// Exemplo de resposta
+{
+  "success": true,
+  "data": [
+    {
+      "timestamp": "2025-07-14T10:30:00.000Z",
+      "name": "João Silva",
+      "email": "joao@email.com",
+      "phone": "123456789",
+      "emergencyContact": "Maria Silva",
+      "emergencyPhone": "987654321"
+    }
+  ],
+  "pagination": {
+    "total": 150,
+    "limit": 50,
+    "offset": 0,
+    "hasMore": true
+  }
+}
+```
+
+#### Painel Administrativo
+
+Acesse `/admin` para visualizar todas as inscrições com:
+
+- **Paginação automática**: Carregamento eficiente de dados
+- **Exportação CSV**: Download dos dados para análise
+- **Atualização em tempo real**: Refresh dos dados
+- **Interface responsiva**: Funciona em mobile e desktop
+
+Para testes da API, acesse `/admin/test`
 
 ### Exemplo de Resposta da API
 

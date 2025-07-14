@@ -9,8 +9,8 @@ import { Input } from '@/components/ui/input'
 import { AlertCircle, Loader2Icon } from 'lucide-react'
 
 const registrationSchema = z.object({
-  name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
-  phone: z.string().min(9, 'Telefone deve ter pelo menos 9 dígitos'),
+  name: z.string().trim().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+  phone: z.string().trim().min(9, 'Telefone deve ter pelo menos 9 dígitos'),
   email: z.string().email('Email inválido'),
   emergencyContact: z.string().optional(),
   emergencyPhone: z.string().optional(),
