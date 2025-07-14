@@ -379,14 +379,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 - **Alexsandro Oliveira** - _Desenvolvedor Principal_ - [@alexsandro-oliveira](https://github.com/alexsandro-oliveira)
 
-## 🙏 Agradecimentos
-
-- [Next.js](https://nextjs.org/) pela excelente framework
-- [Tailwind CSS](https://tailwindcss.com/) pelo sistema de design
-- [shadcn/ui](https://ui.shadcn.com/) pelos componentes base
-- [Lucide](https://lucide.dev/) pelos ícones
-- [Google](https://developers.google.com/) pela API do Sheets
-
 ---
 
 <div align="center">
