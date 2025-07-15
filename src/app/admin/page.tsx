@@ -42,12 +42,12 @@ export default function AdminPage() {
   const [error, setError] = useState<string | null>(null)
   const [pagination, setPagination] = useState({
     total: 0,
-    limit: 50,
+    limit: 10,
     offset: 0,
     hasMore: false,
   })
 
-  const fetchRegistrations = async (limit = 50, offset = 0) => {
+  const fetchRegistrations = async (limit = 10, offset = 0) => {
     setLoading(true)
     setError(null)
 
@@ -179,7 +179,7 @@ export default function AdminPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -194,7 +194,7 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          {/* <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Carregadas</p>
@@ -204,7 +204,7 @@ export default function AdminPage() {
               </div>
               <Calendar className="w-8 h-8 text-green-500" />
             </div>
-          </div>
+          </div> */}
 
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between">
