@@ -168,7 +168,7 @@ export default function AdminPage() {
               </Button>
               <Button
                 onClick={exportToCSV}
-                disabled={registrations.length === 0}
+                disabled
                 className="flex items-center gap-2">
                 <Download className="w-4 h-4" />
                 Exportar CSV
