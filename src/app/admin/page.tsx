@@ -8,11 +8,11 @@ import {
   RefreshCw,
   Users,
   Calendar,
-  Mail,
-  Phone,
+  // Mail,
+  // Phone,
   HomeIcon,
 } from 'lucide-react'
-import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 type Registration = {
   timestamp: string
@@ -150,12 +150,11 @@ export default function AdminPage() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
-              <Button
-                variant="outline"
-                className="flex items-center gap-2"
-                onClick={() => redirect('/')}>
-                <HomeIcon className="w-4 h-4" />
-              </Button>
+              <Link href="/">
+                <Button variant="outline" className="flex items-center gap-2">
+                  <HomeIcon className="w-4 h-4" />
+                </Button>
+              </Link>
 
               <Button
                 onClick={handleRefresh}
@@ -267,7 +266,7 @@ export default function AdminPage() {
                         {registration.name}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {/*<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <Mail className="w-4 h-4 text-gray-400" />
@@ -288,6 +287,7 @@ export default function AdminPage() {
                         </div>
                       </div>
                     </td>
+                    */}
                   </tr>
                 ))}
               </tbody>
