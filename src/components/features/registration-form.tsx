@@ -25,6 +25,7 @@ export default function RegistrationForm() {
 
   const {
     register,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleSubmit,
     formState: { errors },
     reset,
@@ -32,6 +33,7 @@ export default function RegistrationForm() {
     resolver: zodResolver(registrationSchema),
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (data: RegistrationData) => {
     setIsSubmitting(true)
     setSubmitError(null)
@@ -105,7 +107,7 @@ export default function RegistrationForm() {
         Informações Pessoais
       </h3>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        // onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 md:space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
@@ -211,9 +213,9 @@ export default function RegistrationForm() {
         </div>
 
         <Button
-          type="submit"
+          // type="submit"
           className="w-full bg-[#B8014A] hover:bg-[#99003a] text-white py-2 sm:py-3 text-sm sm:text-base"
-          disabled={isSubmitting}>
+          disabled>
           {isSubmitting ? (
             <Loader2Icon className="animate-spin" />
           ) : (

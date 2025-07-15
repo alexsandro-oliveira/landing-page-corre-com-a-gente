@@ -8,12 +8,13 @@ import {
   Target,
   Users,
 } from 'lucide-react'
-import { Button } from './ui/button'
+
+import Image from 'next/image'
 
 export default function AboutSection() {
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
-  }
+  // const scrollToSection = (sectionId: string) => {
+  //   document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+  // }
 
   const distances = [
     {
@@ -147,7 +148,7 @@ export default function AboutSection() {
         <AnimatedSection
           animation="fadeUp"
           delay={1000}
-          className="text-center mt-8 md:mt-12">
+          className="text-center mt-8 md:mt-12 relative">
           {/* Distance Options */}
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
@@ -183,16 +184,26 @@ export default function AboutSection() {
                     </div>
                   </div>
                   <div className="text-center lg:text-right">
-                    <Button
+                    {/* <Button
                       onClick={() => scrollToSection('registration')}
                       className="bg-[#B8014A] hover:bg-[#B8014A] text-white"
                       size="sm">
                       Inscreva-se
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </AnimatedSection>
             </div>
+          </div>
+
+          <div className="absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 opacity-40">
+            <Image
+              src="/encerrado1.png"
+              alt="Inscrições encerradas"
+              width={250}
+              height={250}
+              style={{ transform: 'rotate(-30deg)' }}
+            />
           </div>
         </AnimatedSection>
       </div>

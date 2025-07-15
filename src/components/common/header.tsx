@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { BanIcon } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,24 +26,27 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-6">
             <button
               onClick={() => scrollToSection('details')}
-              className="text-gray-700 hover:text-[#B8014A] transition-colors">
+              className="text-gray-700 hover:text-[#B8014A] transition-colors cursor-pointer">
               Sobre o Evento
             </button>
             <button
               onClick={() => scrollToSection('organizers')}
-              className="text-gray-700 hover:text-[#B8014A] transition-colors">
+              className="text-gray-700 hover:text-[#B8014A] transition-colors cursor-pointer">
               Organizadoras
             </button>
             <button
               onClick={() => scrollToSection('sponsors')}
-              className="text-gray-700 hover:text-[#B8014A] transition-colors">
+              className="text-gray-700 cursor-pointer hover:text-[#B8014A] transition-colors">
               Apoiadores
             </button>
             <Button
-              onClick={() => scrollToSection('registration')}
-              className="bg-[#B8014A] hover:bg-[#B8014A] text-white"
+              variant="outline"
+              disabled
+              // onClick={() => scrollToSection('registration')}
+              className="border-[#B8014A] text-[#B8014A] transition-colors cursor-not-allowed"
               size="sm">
-              Inscreva-se
+              <BanIcon className="w-4 h-4 mr-2" />
+              Inscrições Encerradas
             </Button>
           </nav>
 
@@ -94,9 +98,13 @@ export default function Header() {
                 Apoiadores
               </button>
               <Button
-                onClick={() => scrollToSection('registration')}
-                className="bg-[#B8014A] hover:bg-[#B8014A] text-white w-full">
-                Inscreva-se
+                variant="outline"
+                disabled
+                // onClick={() => scrollToSection('registration')}
+                className="border-[#B8014A] text-[#B8014A] transition-colors"
+                size="sm">
+                <BanIcon className="w-4 h-4 mr-2" />
+                Inscrições Encerradas
               </Button>
             </nav>
           </div>
