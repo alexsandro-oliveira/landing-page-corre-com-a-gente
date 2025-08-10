@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { BanIcon } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -41,12 +40,11 @@ export default function Header() {
             </button>
             <Button
               variant="outline"
-              disabled
-              // onClick={() => scrollToSection('registration')}
-              className="border-[#B8014A] text-[#B8014A] transition-colors cursor-not-allowed"
+              onClick={() => scrollToSection('registration')}
+              className="border-[#B8014A] text-[#B8014A] transition-colors cursor-pointer"
               size="sm">
-              <BanIcon className="w-4 h-4 mr-2" />
-              Inscrições Encerradas
+              {/* <BanIcon className="w-4 h-4 mr-2" /> */}
+              Inscrições
             </Button>
           </nav>
 
@@ -99,12 +97,11 @@ export default function Header() {
               </button>
               <Button
                 variant="outline"
-                disabled
-                // onClick={() => scrollToSection('registration')}
+                onClick={() => scrollToSection('registration')}
                 className="border-[#B8014A] text-[#B8014A] transition-colors"
                 size="sm">
-                <BanIcon className="w-4 h-4 mr-2" />
-                Inscrições Encerradas
+                {/* <BanIcon className="w-4 h-4 mr-2" /> */}
+                Inscrições
               </Button>
             </nav>
           </div>

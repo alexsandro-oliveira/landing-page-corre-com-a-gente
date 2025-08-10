@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import AnimatedSection from './common/animated-section'
 import RegistrationForm from './features/registration-form'
 
@@ -20,7 +19,7 @@ export default function RegistrationSection() {
 
           <AnimatedSection animation="scaleUp" delay={300}>
             <RegistrationForm />
-            <div className="absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 opacity-40">
+            {/* <div className="absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 opacity-40">
               <Image
                 src="/encerrado1.png"
                 alt="Inscrições encerradas"
@@ -28,7 +27,7 @@ export default function RegistrationSection() {
                 height={500}
                 style={{ transform: 'rotate(-30deg)' }}
               />
-            </div>
+            </div> */}
           </AnimatedSection>
         </div>
       </div>

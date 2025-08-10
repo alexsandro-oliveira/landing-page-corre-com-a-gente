@@ -9,8 +9,6 @@ import {
   Users,
 } from 'lucide-react'
 
-import Image from 'next/image'
-
 export default function AboutSection() {
   // const scrollToSection = (sectionId: string) => {
   //   document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
@@ -18,7 +16,7 @@ export default function AboutSection() {
 
   const distances = [
     {
-      distance: 'até 5km',
+      distance: 'até 6km',
       title: 'Caminhada ou Corrida Leve',
       description:
         'Perfeito para iniciantes ou quem quer um desafio leve. Caminhe ou corra no seu ritmo',
@@ -81,7 +79,7 @@ export default function AboutSection() {
 
           <AnimatedSection
             animation="fadeUp"
-            delay={600}
+            delay={300}
             className="text-center p-4 md:p-6 bg-white rounded-lg shadow-md sm:col-span-2 lg:col-span-1 hover:shadow-lg">
             <div className="w-12 h-12 md:w-16 md:h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-float">
               <span className="text-xl md:text-2xl">
@@ -99,7 +97,7 @@ export default function AboutSection() {
 
         <AnimatedSection
           animation="fadeUp"
-          delay={800}
+          delay={600}
           className="text-center mt-8 md:mt-12">
           {/* Distance Options */}
           <div className="max-w-4xl mx-auto">
@@ -114,7 +112,7 @@ export default function AboutSection() {
                   return (
                     <AnimatedSection
                       animation="fadeUp"
-                      delay={900}
+                      delay={700}
                       key={index}
                       className={`${option.bgColor} ${option.borderColor} border-2 rounded-3xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-xl`}>
                       <div className="flex items-start mb-6">
@@ -147,7 +145,7 @@ export default function AboutSection() {
 
         <AnimatedSection
           animation="fadeUp"
-          delay={1000}
+          delay={800}
           className="text-center mt-8 md:mt-12 relative">
           {/* Distance Options */}
           <div className="max-w-4xl mx-auto">
@@ -158,7 +156,7 @@ export default function AboutSection() {
 
               <AnimatedSection
                 animation="fadeUp"
-                delay={1100}
+                delay={900}
                 className="mt-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 lg:p-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                   <div className="lg:col-span-2">
@@ -166,7 +164,7 @@ export default function AboutSection() {
                       <div className="flex items-center">
                         <Calendar className="w-5 h-5 text-green-600 mr-3" />
                         <span className="text-lg">
-                          <strong>Data:</strong> Domingo 27 de Julho de 2025
+                          <strong>Data:</strong> Domingo 17 de Agosto de 2025
                         </span>
                       </div>
                       <div className="flex items-center">
@@ -178,7 +176,7 @@ export default function AboutSection() {
                       <div className="flex items-center">
                         <MapPin className="w-5 h-5 text-amber-500 mr-3" />
                         <span className="text-lg">
-                          <strong>Local:</strong> Matosinhos - Portugal
+                          <strong>Local:</strong> Braga - Portugal
                         </span>
                       </div>
                     </div>
@@ -196,7 +194,7 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <div className="absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 opacity-40">
+          {/* <div className="absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 opacity-40">
             <Image
               src="/encerrado1.png"
               alt="Inscrições encerradas"
@@ -204,7 +202,7 @@ export default function AboutSection() {
               height={250}
               style={{ transform: 'rotate(-30deg)' }}
             />
-          </div>
+          </div> */}
         </AnimatedSection>
       </div>
     </section>

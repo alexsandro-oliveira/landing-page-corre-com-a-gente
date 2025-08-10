@@ -1,19 +1,26 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { PhoneInput } from '@/components/ui/phone-input'
 import { AlertCircle, Loader2Icon } from 'lucide-react'
 
 const registrationSchema = z.object({
   name: z.string().trim().min(2, 'Nome deve ter pelo menos 2 caracteres'),
-  phone: z.string().trim().min(9, 'Telefone deve ter pelo menos 9 dígitos'),
+  phone: z
+    .string()
+    .trim()
+    .min(9, 'Telefone deve ter pelo menos 9 dígitos')
+    .max(11, 'Telefone deve ter no máximo 11 dígitos'),
+  phoneCountry: z.string(),
   email: z.string().email('Email inválido'),
   emergencyContact: z.string().optional(),
   emergencyPhone: z.string().optional(),
+  emergencyPhoneCountry: z.string(),
 })
 
 type RegistrationData = z.infer<typeof registrationSchema>
@@ -25,12 +32,17 @@ export default function RegistrationForm() {
 
   const {
     register,
+    control,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<RegistrationData>({
     resolver: zodResolver(registrationSchema),
+    defaultValues: {
+      phoneCountry: 'PT',
+      emergencyPhoneCountry: 'PT',
+    },
   })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -38,7 +50,6 @@ export default function RegistrationForm() {
     setIsSubmitting(true)
     setSubmitError(null)
     try {
-      // Simulate API call
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
@@ -48,8 +59,10 @@ export default function RegistrationForm() {
           name: data.name,
           email: data.email,
           phone: data.phone,
+          phoneCountry: data.phoneCountry,
           emergencyContact: data.emergencyContact,
           emergencyPhone: data.emergencyPhone,
+          emergencyPhoneCountry: data.emergencyPhoneCountry,
         }),
       })
 
@@ -107,7 +120,7 @@ export default function RegistrationForm() {
         Informações Pessoais
       </h3>
       <form
-        // onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 md:space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
@@ -131,13 +144,29 @@ export default function RegistrationForm() {
             <label
               htmlFor="phone"
               className="block text-sm font-medium text-gray-700 mb-1">
-              Telefone *
+              Telefone / Whatsapp*
             </label>
-            <Input
-              id="phone"
-              {...register('phone')}
-              placeholder="00000-0000"
-              className={errors.phone ? 'border-red-500' : ''}
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <Controller
+                  name="phoneCountry"
+                  control={control}
+                  render={({
+                    field: { value: countryValue, onChange: countryOnChange },
+                  }) => (
+                    <PhoneInput
+                      value={value}
+                      onChange={onChange}
+                      countryCode={countryValue}
+                      onCountryChange={countryOnChange}
+                      placeholder="Número BR incluir DDD"
+                      error={!!errors.phone}
+                    />
+                  )}
+                />
+              )}
             />
             {errors.phone && (
               <p className="text-red-500 text-sm mt-1">
@@ -197,11 +226,27 @@ export default function RegistrationForm() {
                 className="block text-sm font-medium text-gray-700 mb-1">
                 Telefone de Emergência *
               </label>
-              <Input
-                id="emergencyPhone"
-                {...register('emergencyPhone')}
-                placeholder="00000-0000"
-                className={errors.emergencyPhone ? 'border-red-500' : ''}
+              <Controller
+                name="emergencyPhone"
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <Controller
+                    name="emergencyPhoneCountry"
+                    control={control}
+                    render={({
+                      field: { value: countryValue, onChange: countryOnChange },
+                    }) => (
+                      <PhoneInput
+                        value={value || ''}
+                        onChange={onChange}
+                        countryCode={countryValue}
+                        onCountryChange={countryOnChange}
+                        placeholder="Telefone de emergência"
+                        error={!!errors.emergencyPhone}
+                      />
+                    )}
+                  />
+                )}
               />
               {errors.emergencyPhone && (
                 <p className="text-red-500 text-sm mt-1">
@@ -213,9 +258,8 @@ export default function RegistrationForm() {
         </div>
 
         <Button
-          // type="submit"
-          className="w-full bg-[#B8014A] hover:bg-[#99003a] text-white py-2 sm:py-3 text-sm sm:text-base"
-          disabled>
+          type="submit"
+          className="w-full bg-[#B8014A] hover:bg-[#99003a] text-white py-2 sm:py-3 text-sm sm:text-base cursor-pointer">
           {isSubmitting ? (
             <Loader2Icon className="animate-spin" />
           ) : (
