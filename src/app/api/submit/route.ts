@@ -4,7 +4,9 @@ import { google } from 'googleapis'
 type SheetForm = {
   name: string
   email: string
+  phoneCountry: string
   phone: string
+  emergencyPhoneCountry: string
   emergencyContact: string
   emergencyPhone: string
 }
@@ -13,7 +15,9 @@ type SheetData = {
   timestamp: string
   name: string
   email: string
+  phoneCountry: string
   phone: string
+  emergencyPhoneCountry: string
   emergencyContact: string
   emergencyPhone: string
 }
@@ -66,9 +70,11 @@ export async function GET(request: NextRequest) {
       timestamp: row[0] || '',
       name: row[1] || '',
       email: row[2] || '',
-      phone: row[3] || '',
-      emergencyContact: row[4] || '',
-      emergencyPhone: row[5] || '',
+      phoneCountry: row[3] || '',
+      phone: row[4] || '',
+      emergencyPhoneCountry: row[5] || '',
+      emergencyContact: row[6] || '',
+      emergencyPhone: row[7] || '',
     }))
 
     return NextResponse.json({
@@ -115,7 +121,9 @@ export async function POST(request: NextRequest) {
             new Date().toISOString(),
             body.name,
             body.email,
+            body.phoneCountry,
             body.phone,
+            body.emergencyPhoneCountry,
             body.emergencyContact,
             body.emergencyPhone,
           ],

@@ -29,7 +29,7 @@ export default function HeroSection() {
             duration={800}
             className="space-y-4 md:space-y-6 text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <TypedText text="Corre com a Gente!" speed={150} />
+              <TypedText text="Corre com a Gente!" speed={80} />
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl font-light">
               Uma manhã de bem-estar e comunidade.
@@ -37,40 +37,48 @@ export default function HeroSection() {
 
             {/* Event Info Cards */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-6">
-              <EventInfoCards
-                title="Domingo"
-                description="27 de Julho"
-                icon={
-                  <Calendar className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-green-600 mx-auto mb-2 xs:mb-3" />
-                }
-              />
-              <EventInfoCards
-                title="Matosinhos"
-                description="Portugal"
-                icon={
-                  <MapPin className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-amber-500 mx-auto mb-2 xs:mb-3" />
-                }
-              />
-              <EventInfoCards
-                title="Manhã"
-                description="Horário a definir"
-                icon={
-                  <Clock className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-orange-600 mx-auto mb-2 xs:mb-3" />
-                }
-              />
-              <EventInfoCards
-                title="Comunidade"
-                description="Todas as idades"
-                icon={
-                  <Users className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-yellow-600 mx-auto mb-2 xs:mb-3" />
-                }
-              />
+              <AnimatedSection animation="fadeUp" delay={100}>
+                <EventInfoCards
+                  title="Domingo"
+                  description="27 de Julho"
+                  icon={
+                    <Calendar className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-green-600 mx-auto mb-2 xs:mb-3" />
+                  }
+                />
+              </AnimatedSection>
+              <AnimatedSection animation="fadeUp" delay={300}>
+                <EventInfoCards
+                  title="Matosinhos"
+                  description="Portugal"
+                  icon={
+                    <MapPin className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-amber-500 mx-auto mb-2 xs:mb-3" />
+                  }
+                />
+              </AnimatedSection>
+              <AnimatedSection animation="fadeUp" delay={500}>
+                <EventInfoCards
+                  title="Manhã"
+                  description="Horário a definir"
+                  icon={
+                    <Clock className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-orange-600 mx-auto mb-2 xs:mb-3" />
+                  }
+                />
+              </AnimatedSection>
+              <AnimatedSection animation="fadeUp" delay={700}>
+                <EventInfoCards
+                  title="Comunidade"
+                  description="Todas as idades"
+                  icon={
+                    <Users className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-yellow-600 mx-auto mb-2 xs:mb-3" />
+                  }
+                />
+              </AnimatedSection>
             </div>
           </AnimatedSection>
           <AnimatedSection
             animation="slideLeft"
-            delay={400}
-            duration={800}
+            delay={200}
+            duration={900}
             className="relative h-[22rem] sm:h-[22rem] sm:w-[30rem] sm:mx-auto md:h-96 lg:h-96 rounded-lg overflow-hidden shadow-2xl ">
             <Image
               src="https://i.ibb.co/TDC7vZv3/tha-loly.jpg"
