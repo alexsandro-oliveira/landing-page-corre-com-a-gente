@@ -161,7 +161,11 @@ export default function RegistrationForm() {
                       onChange={onChange}
                       countryCode={countryValue}
                       onCountryChange={countryOnChange}
-                      placeholder="Número BR incluir DDD"
+                      placeholder={
+                        countryValue === 'BR'
+                          ? '(11) 99999-9999'
+                          : '999-999-999'
+                      }
                       error={!!errors.phone}
                     />
                   )}
@@ -241,7 +245,11 @@ export default function RegistrationForm() {
                         onChange={onChange}
                         countryCode={countryValue}
                         onCountryChange={countryOnChange}
-                        placeholder="Telefone de emergência"
+                        placeholder={
+                          countryValue === 'BR'
+                            ? '(11) 99999-9999'
+                            : '999-999-999'
+                        }
                         error={!!errors.emergencyPhone}
                       />
                     )}
