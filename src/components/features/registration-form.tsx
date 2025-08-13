@@ -266,12 +266,13 @@ export default function RegistrationForm() {
         </div>
 
         <Button
-          type="submit"
+          disabled
+          // type="submit"
           className="w-full bg-[#B8014A] hover:bg-[#99003a] text-white py-2 sm:py-3 text-sm sm:text-base cursor-pointer">
           {isSubmitting ? (
             <Loader2Icon className="animate-spin" />
           ) : (
-            'Inscrever-se'
+            'Incrições Encerradas'
           )}
         </Button>
       </form>
