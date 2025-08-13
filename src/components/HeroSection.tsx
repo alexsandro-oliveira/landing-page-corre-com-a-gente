@@ -40,7 +40,7 @@ export default function HeroSection() {
               <AnimatedSection animation="fadeUp" delay={100}>
                 <EventInfoCards
                   title="Domingo"
-                  description="27 de Julho"
+                  description="17 de Agosto"
                   icon={
                     <Calendar className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-green-600 mx-auto mb-2 xs:mb-3" />
                   }
@@ -48,7 +48,7 @@ export default function HeroSection() {
               </AnimatedSection>
               <AnimatedSection animation="fadeUp" delay={300}>
                 <EventInfoCards
-                  title="Matosinhos"
+                  title="Braga"
                   description="Portugal"
                   icon={
                     <MapPin className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-amber-500 mx-auto mb-2 xs:mb-3" />
